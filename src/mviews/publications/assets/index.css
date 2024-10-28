@@ -1,0 +1,62 @@
+.publicationsContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: default; /* 改为默认光标 */  
+
+}
+
+.pulicationDate{
+  width: 20%;
+  padding-left: 10vh;
+}
+
+.publicationNewsContainer{
+  width: 75%;
+}
+
+.select{
+  color: orange;
+}
+
+.year{
+  padding:1vh 0 1vh 0;
+  font-family: PingFangSC-Semibold;
+  font-size:2vh;
+  font-weight: 600;
+  transition: background-color 0.2s ease 0.1s, color 0.2s ease 0.1s;  
+
+}
+
+.year:hover{
+  color: orange;
+  cursor: pointer; 
+  background-color: rgb(235, 235, 235);
+}
+
+.publicTitle{
+  color: orange;
+  display: flex;
+  justify-content: left;
+  /* font-family: PingFangSC-medium; */
+
+  font-size: 3vh;
+  padding-top: 2vh;
+  font-weight: 600;
+}
+
+.el-divider--horizontal {
+  margin: 1vh 0 1vh 0;
+}
+
+@media (max-aspect-ratio: 4/3) { 
+  .pulicationDate{
+    width: 15%;
+    padding:0 0 5% 0;
+  }
+  
+  .publicationNewsContainer{
+    width: 75%;
+    margin-right: 5%;
+  }
+}

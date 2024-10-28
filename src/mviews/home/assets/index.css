@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  cursor: default; /* 改为默认光标 */  
+}
+.titleBox {
+  color: orange;
+  display: flex;
+  justify-content: left;
+  /* font-family: PingFangSC-medium; */
+
+  font-size: 3vh;
+  padding-top: 2vh;
+  font-weight: 600;
+}
+
+.interestBox {
+  width: 35%;
+  height: 100vh;
+}
+
+.bulletinBox {
+  width: 35%;
+  cursor: default; /* 改为默认光标 */  
+}
+
+.linkstBox {
+  width: 20%;
+}
+.linksDetailBox{
+  transition: background-color 0.2s ease 0.1s, color 0.2s ease 0.1s;
+  font-weight: 600;  
+}
+.linksDetailBox:hover{
+  background-color: rgb(235, 235, 235) ;
+color: orange;
+}
+
+ul {
+  /* font-family: PingFangSC-medium; */
+
+  font-size: 2vh;
+  list-style-type: none;
+  padding: 0;  
+  line-height: 5vh;
+  margin: 0;
+  cursor: default; /* 改为默认光标 */   
+}
+
+p{
+  cursor: pointer;
+}
+
+.el-divider--horizontal{
+margin:2% 0 4% 0;
+background-color: red;
+}

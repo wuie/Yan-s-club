@@ -1,0 +1,67 @@
+.researchBox {
+  width: 30%;
+  cursor: default; /* 改为默认光标 */  
+}
+
+.teamBox {
+  width: 65%;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+  padding:0 0 0 0;
+  margin: 0 0 0 0;
+  cursor: default; /* 改为默认光标 */  
+
+}
+
+.hzauBasedContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.alumni-button-grid {  
+  display: grid;  
+  place-items: center; /* 简写，等同于 justify-items: center; align-items: center; */  
+  height: 100px; /* 或者你需要的任何高度 */  
+  width: 100%; /* 占据整个团队盒子的宽度 */  
+}  
+
+.HzauBasedHeader {
+  /* font-family: PingFangSC-medium; */
+
+  font-size: 3vh;
+  padding-top: 2vh;
+  font-weight: 600;
+  color: orange;
+}
+
+.teamHeader {
+  /* font-family: PingFangSC-medium; */
+
+  font-size:2.3vh;
+  font-weight: 600;
+}
+
+.el-divider--horizontal{
+  margin:1vh 0 2vh 0;
+  background-color: red;
+  }
+
+@media (max-aspect-ratio: 4/3) {
+  .hzauBasedContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .researchBox {
+    width: 100%;
+    cursor: default; /* 改为默认光标 */  
+  }
+  .teamBox {
+    width: 100%;
+    padding-bottom:0vh;
+    cursor: default; /* 改为默认光标 */  
+  
+  }
+}
