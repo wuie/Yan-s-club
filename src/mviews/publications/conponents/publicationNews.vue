@@ -8,6 +8,9 @@
     <div class="newsAuthor">
       {{ personList.writers }}
     </div>
+    <div class="newsAuthor">
+      {{ personList.magazine }}
+    </div>
     <div class="newsDate">
       {{ formattedDate }}
     </div>
@@ -17,7 +20,7 @@
 <script setup>
 import { defineProps, onMounted } from "vue";
 import useUserStore from "@/store/modules/user.js";
-const personList = defineProps(["title", "writers", "date", "pdf"]);
+const personList = defineProps(["title", "writers", "date", "pdf", "magazine"]);
 
 // 拼接论文地址
 const userStore = useUserStore(); // 正确调用store

@@ -1,61 +1,146 @@
 <template>
-  <div class="newsContainer">
-    <ul class="newsBoxContainer" style="  list-style-type: none;">
-      <li class="newsBoxLi" v-for="i in newsList" :key="i" >
-        <newsBox
-          :title="i.titles"
-          :content="i.content"
-          :writer="i.writers"
-          :picture="i.picture"
-          :date="i.date"
-          :links="i.links"
-        />
-      </li>
-    </ul>
+  <div class="news-container">
+    <div class="news-content">
+      <ul class="news-list">
+        <li class="news-item" v-for="item in newsList" :key="item.id">
+          <newsBox
+            :title="item.titles"
+            :content="item.content"
+            :writer="item.writers"
+            :picture="item.picture"
+            :date="item.date"
+            :links="item.links"
+          />
+        </li>
+      </ul>
+    </div>
+    
+    <!-- 分页器放到内容框外面 -->
+    <div class="pagination-container">
+      <el-pagination
+        v-model:current-page="currentPage"
+        v-model:page-size="pageSize"
+        :page-sizes="[5, 10, 20, 50]"
+        :total="total"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        layout="total, sizes, prev, pager, next, jumper"
+      />
+    </div>
   </div>
 </template>
 
-<script setup class="news">
+<script setup>
 import newsBox from "./components/newsBox.vue";
 import { ref, onMounted } from "vue";
 import { getNewsListApi } from "@/api/news/index.js";
 
 const newsList = ref([]);
+const total = ref(0);
+const currentPage = ref(1);
+const pageSize = ref(10);
 
 const getNewsList = async () => {
-  const res = await getNewsListApi();
-  newsList.value = res.rows;
+  try {
+    const params = {
+      pageNum: currentPage.value,
+      pageSize: pageSize.value
+    };
+    const res = await getNewsListApi(params);
+    newsList.value = res.rows.map(item => ({
+      ...item,
+      titles: item.titles.replace(/<[^>]+>/g, "")
+    }));
+    total.value = res.total;
+    
+    // 按日期排序
+    newsList.value.sort((a, b) => new Date(b.date) - new Date(a.date));
+  } catch (error) {
+    console.error('获取新闻列表失败:', error);
+  }
+};
+
+// 处理每页显示数量变化
+const handleSizeChange = (val) => {
+  pageSize.value = val;
+  currentPage.value = 1; // 重置到第一页
+  getNewsList();
+};
+
+// 处理页码变化
+const handleCurrentChange = (val) => {
+  currentPage.value = val;
+  getNewsList();
 };
 
 onMounted(() => {
-  getNewsList().then(() => {
-    // 先清除素有title样式
-    for (let i of newsList.value) {
-      i.titles = i.titles.replace(/<[^>]+>/g, "");
-    }
-    // 先将所有新闻按照年份进行排序
-    newsList.value.sort((a, b) => new Date(b.date) - new Date(a.date));
-    console.log("newsNow:", newsList.value);
-    // 然后将每一个news数据样式进行修改
-    // 将news的titles，content，writers，date，picture传过去
-  });
+  getNewsList();
 });
 </script>
 
-<style scoped lang="less" src="./assets/index.css">
-ul.newsBoxContainer {
-  list-style-type: none !important;
-  cursor: default; /* 改为默认光标 */  
-
-
+<style lang="less" scoped>
+.news-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  
+  .news-content {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 20px; /* 添加底部间距，与分页器分开 */
+    
+    .news-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      .news-item {
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+        
+        &:hover {
+          transform: translateY(-2px);
+        }
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  
+  .pagination-container {
+    background: #f8f9fa;
+    // padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    
+    :deep(.el-pagination) {
+      padding: 10px 20px;
+      background: #f8f9fa;
+      border-radius: 4px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      /* 优化分页器按钮样式 */
+      .el-pager li {
+        background: transparent;
+        &:not(.disabled).active {
+          background-color: #409eff;
+          color: white;
+        }
+      }
+      
+      .btn-prev, .btn-next {
+        background: transparent;
+      }
+    }
+  }
 }
-
-.newsBoxLi {
-  padding:0 200vh 0 200vh;
-  list-style-type: none;
-  cursor: default; /* 改为默认光标 */  
-
-}
-
-
 </style>

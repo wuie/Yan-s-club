@@ -77,7 +77,7 @@ export const constantRoutes = [
         children: [
           {
             path: "home",
-            name: "Home",
+            name: "Home", 
             component: () => import("@/mviews/home/index.vue"),
           },
           {
@@ -120,6 +120,12 @@ export const constantRoutes = [
             path:'alumin',
             name:'alumin',
             component:()=>import("@/mviews/components/aluminPage/index.vue")
+          },
+          // 联系我们
+          {
+            path: "contactus",
+            name: "ContactUs",
+            component: () => import("@/mviews/ContactUs/index.vue")
           }
         ],
       },

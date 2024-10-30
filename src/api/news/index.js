@@ -1,9 +1,14 @@
 import request from '@/utils/request'
 
-// 获取全部news
-export function getNewsListApi(){
+// 获取新闻列表（支持分页）
+export function getNewsListApi(params) {
     return request({
-        url:'/public-information/news/list?pageNum=1&pageSize=20np',
-        method:'get'
+        url: '/public-information/news/list',
+        method: 'get',
+        params: {
+            pageNum: params?.pageNum || 1,
+            pageSize: params?.pageSize || 20,
+            ...params
+        }
     })
 }

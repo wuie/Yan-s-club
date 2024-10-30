@@ -53,32 +53,32 @@
           <router-link
             class="nav-link"
             :class="{ active: activeIndex === '3' }"
-            :to="{ name: 'Yzubased' }"
-            >YZW-based</router-link
+            :to="{ name: 'HZAUPublications' }"
+            >Publications</router-link
           >
         </el-menu-item>
         <el-menu-item index="4">
           <router-link
             class="nav-link"
             :class="{ active: activeIndex === '4' }"
-            :to="{ name: 'HZAUPublications' }"
-            >Publications</router-link
+            :to="{ name: 'HZAUResources' }"
+            >Resources</router-link
           >
         </el-menu-item>
         <el-menu-item index="5">
           <router-link
             class="nav-link"
             :class="{ active: activeIndex === '5' }"
-            :to="{ name: 'HZAUResources' }"
-            >Resources</router-link
+            :to="{ name: 'HZAUNews' }"
+            >News</router-link
           >
         </el-menu-item>
         <el-menu-item index="6">
           <router-link
             class="nav-link"
             :class="{ active: activeIndex === '6' }"
-            :to="{ name: 'HZAUNews' }"
-            >News</router-link
+            :to="{ name: 'ContactUs' }"
+            >Contact Us</router-link
           >
         </el-menu-item>
       </el-menu>

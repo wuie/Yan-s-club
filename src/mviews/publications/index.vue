@@ -16,7 +16,7 @@
       </ul>
     </div>
     <div class="publicationNewsContainer">
-      <div class="publicTitle">News</div>
+      <div class="publicTitle">Publication</div>
       <el-divider />
       <ul style="list-style-type: none; padding: 0; margin: 0">
         <li v-for="item in sliceArticles" :key="item.id">
@@ -25,6 +25,7 @@
             :writers="item.writers"
             :date="item.date"
             :pdf="item.pdf"
+            :magazine = "item.magazine"
           />
         </li>
       </ul>
